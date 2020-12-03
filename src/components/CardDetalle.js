@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, ListGroup } from "react-bootstrap";
 import FormularioTurno from "./FormularioTurno";
-import { actualizarTurno } from "../utils/turnos";
+import { actualizarTurno } from "../services/turnos";
 import PropTypes from "prop-types";
 
 const CardDetalle = (props) => {
@@ -9,7 +9,7 @@ const CardDetalle = (props) => {
   return (
     <>
       <Card key={indice} style={{ width: "20rem" }}>
-        <Card.Header>Turno {turno.id}</Card.Header>
+        <Card.Header>Turno </Card.Header>
         <Card.Body>
           <Card.Title>Detalle</Card.Title>
           <ListGroup className="list-group-flush">
@@ -17,7 +17,7 @@ const CardDetalle = (props) => {
               turno={turno}
               buttonName={"Actualizar"}
               handlerTurno={async (values) => {
-                values.id = turno.id;
+                values._id = turno._id;
                 await actualizarTurno(values);
               }}
             />

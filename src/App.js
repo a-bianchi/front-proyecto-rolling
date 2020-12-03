@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Alert } from "react-bootstrap";
 import FormularioTurno from "./components/FormularioTurno";
 import CardDetalle from "./components/CardDetalle";
-import {
-  setTurno,
-  getTurnos,
-  eliminarTurno,
-  validarTurnos,
-} from "./utils/turnos";
+import { setTurno, getTurnos, eliminarTurno } from "./services/turnos";
 import ModalCustom from "./components/ModalCustom";
 
 function App() {
   const [lista, setLista] = useState([]);
   const [show, setShow] = useState(false);
 
-  useEffect(async () => {
-    const storageLista = await getTurnos();
-    if (storageLista) setLista(storageLista);
+  useEffect(() => {
+    try {
+      const request = async () => {
+        const storageLista = await getTurnos();
+        if (storageLista.data) setLista(storageLista.data);
+      }
+      request();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
   }, []);
 
   return (
@@ -28,13 +30,8 @@ function App() {
             turno={{}}
             buttonName={"Agregar"}
             handlerTurno={async (values) => {
-              const turnosRepetidos = await validarTurnos(values);
-              if (turnosRepetidos.length > 0) {
-                setShow(true);
-              } else {
-                await setTurno(values);
-                setLista(await getTurnos());
-              }
+              const turnoNuevo = await setTurno(values);
+              setLista([...lista, turnoNuevo.data]);
             }}
           />{" "}
         </Col>
@@ -54,8 +51,11 @@ function App() {
                   indice={index}
                   turno={element}
                   funcionEliminar={async () => {
-                    await eliminarTurno(element.id);
-                    setLista(await getTurnos());
+                    await eliminarTurno(element._id);
+                    const nuevaLista = lista.filter((turno) => {
+                      if (turno._id !== element._id) return turno;
+                    });
+                    setLista(nuevaLista);
                   }}
                 />
               </div>
