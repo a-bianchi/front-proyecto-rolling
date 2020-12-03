@@ -1,0 +1,20 @@
+{
+  "turnos": [
+    {
+      "nombre": "Pepe",
+      "nombreDueno": "Vanesa123",
+      "fecha": "05/11/2020",
+      "hora": "9hs",
+      "sintomas": "Camina muy lento!",
+      "id": 3
+    },
+    {
+      "nombre": "Hola",
+      "nombreDueno": "Hola",
+      "fecha": "10/11/2020",
+      "hora": "12",
+      "sintomas": "12",
+      "id": 5
+    }
+  ]
+}
