@@ -13,8 +13,10 @@ function App() {
     try {
       const request = async () => {
         const storageLista = await getTurnos();
-        if (storageLista.data) setLista(storageLista.data);
-      }
+        if (storageLista) {
+          if (storageLista.data) setLista(storageLista.data);
+        }
+      };
       request();
     } catch (error) {
       console.log("Error: ", error);

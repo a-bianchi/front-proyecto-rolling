@@ -1,3 +1,12 @@
+# Entorno de Produccion ()
+
+1. Registrarnos en https://app.netlify.com/teams/linusar/overview
+2. Vamos a "New Sites from Git".
+3. Si no vemos nuestro repositorio vamos a "Can’t see your repo here? "
+4. Selecionar Nuestra cuenta de git y luego el repositorio que queremos subir.
+5. Creamos una rama de desarrollo (develop).
+6. Cuando este todo probado podemos hacer un git merger develop.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
