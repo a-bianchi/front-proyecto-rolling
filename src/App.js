@@ -54,10 +54,12 @@ function App() {
                   turno={element}
                   funcionEliminar={async () => {
                     await eliminarTurno(element._id);
-                    const nuevaLista = lista.filter((turno) => {
-                      if (turno._id !== element._id) return turno;
-                    });
-                    setLista(nuevaLista);
+                    if (lista.length !== 0) {
+                      const nuevaLista = lista.filter((turno) => {
+                        if (turno._id !== element._id) return turno;
+                      });
+                      setLista(nuevaLista);
+                    }
                   }}
                 />
               </div>
