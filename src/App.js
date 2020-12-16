@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Alert } from "react-bootstrap";
 import FormularioTurno from "./components/FormularioTurno";
 import CardDetalle from "./components/CardDetalle";
-import { setTurno, getTurnos, eliminarTurno } from "./services/turnos";
+import {
+  hacerPostEnBackend,
+  getTurnos,
+  eliminarTurno,
+} from "./services/turnos";
 import ModalCustom from "./components/ModalCustom";
 
 function App() {
@@ -32,7 +36,30 @@ function App() {
             turno={{}}
             buttonName={"Agregar"}
             handlerTurno={async (values) => {
-              const turnoNuevo = await setTurno(values);
+              /* values es un objeto con el valor de los inputs del formulario
+                  values =      {
+                      nombre: 'Pepito',
+                      nombreDueno: "Lala",
+                      fecha: "Lala",
+                      hora: "Lala",
+                      sintomas: "Lala",
+                  }
+              
+              */
+              const turnoNuevo = await hacerPostEnBackend(values);
+              /*
+              response = {
+                _id: 'adkjshkj2h34k2jh34d09823048'
+                nombre: 'Pepito',
+                nombreDueno: "Lala",
+                fecha: "Lala",
+                hora: "Lala",
+                sintomas: "Lala",
+              }
+              */
+              /*
+               lista = un arreglo de turnos
+              */
               setLista([...lista, turnoNuevo.data]);
             }}
           />{" "}

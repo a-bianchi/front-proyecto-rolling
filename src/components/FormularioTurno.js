@@ -18,18 +18,19 @@ const validationSchema = Yup.object({
     .required("El sintomas es requerido!!"),
 });
 
-const FormularioTurno = (props) => {
+const FormularioTurno = ({ turno, handlerTurno, buttonName }) => {
+  // objecto.handleSubmit - objecto.handleChange - objecto.errors
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues: {
-      nombre: props.turno.nombre || "",
-      nombreDueno: props.turno.nombreDueno || "",
-      fecha: props.turno.fecha || "",
-      hora: props.turno.hora || "",
-      sintomas: props.turno.sintomas || "",
+      nombre: turno.nombre || "",
+      nombreDueno: turno.nombreDueno || "",
+      fecha: turno.fecha || "",
+      hora: turno.hora || "",
+      sintomas: turno.sintomas || "",
     },
     validationSchema,
     onSubmit: (values) => {
-      props.handlerTurno(values);
+      handlerTurno(values);
     },
   });
   return (
@@ -103,7 +104,7 @@ const FormularioTurno = (props) => {
         ) : null}
       </Form.Group>
       <Button variant="primary" type="submit">
-        {props.buttonName}
+        {buttonName}
       </Button>
     </Form>
   );

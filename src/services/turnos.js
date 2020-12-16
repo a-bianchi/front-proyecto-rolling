@@ -1,16 +1,17 @@
 const axios = require("axios");
-const url = "http://localhost:3000";
+const url = "http://localhost:4141";
 
 const getTurnos = async () => {
   try {
     const respuesta = await axios.get(`${url}/turnos`);
+    console.log(respuesta);
     return respuesta.data;
   } catch (error) {
     console.log("Error ", error);
   }
 };
 
-const setTurno = async (turno) => {
+const hacerPostEnBackend = async (turno) => {
   try {
     return await axios.post(`${url}/turnos`, turno);
   } catch (error) {
@@ -44,4 +45,10 @@ const getTurnosPorId = async (id) => {
   }
 };
 
-export { getTurnos, setTurno, eliminarTurno, getTurnosPorId, actualizarTurno };
+export {
+  getTurnos,
+  hacerPostEnBackend,
+  eliminarTurno,
+  getTurnosPorId,
+  actualizarTurno,
+};
